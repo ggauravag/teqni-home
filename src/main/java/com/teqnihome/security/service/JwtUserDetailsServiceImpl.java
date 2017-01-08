@@ -16,17 +16,17 @@ import com.teqnihome.security.repository.UserRepository;
 @Service
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User user = userRepository.findByUsername(username);
 
-        if (user == null) {
-            throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
-        } else {
-            return JwtUserFactory.create(user);
-        }
-    }
+		if (user == null) {
+			throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
+		} else {
+			return JwtUserFactory.create(user);
+		}
+	}
 }
